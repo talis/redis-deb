@@ -2,7 +2,7 @@ version: 2
 executorType: machine
 stages:
   build:
-    workDir: ~/pdftk-deb
+    workDir: ~/redis-deb
     steps:
       - type: shell
         name: Prep /development
