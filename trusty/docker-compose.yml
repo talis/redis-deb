@@ -4,5 +4,8 @@ services:
     build: .
     volumes:
       - /development/redis-deb/trusty/out:/out
-      
-    
+  test:
+    image: ubuntu:trusty
+    volumes:
+      - /development/redis-deb/trusty/out:/out
+    command: /bin/bash -c "cd /out && sudo dpkg -i redis-tools_3.2.4-trusty-talis_amd64.deb && sudo dpkg -i redis-server_3.2.4-trusty-talis_amd64.deb && sudo service redis-server start && nc -zv 127.0.0.1 6379 && dpkg -r redis-server && dpkg -r redis-tools"
