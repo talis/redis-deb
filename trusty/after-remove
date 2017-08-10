@@ -1,3 +1,4 @@
 #!/bin/bash
 
-deluser redis
+service redis stop
+id -u redis &>/dev/null && deluser redis
