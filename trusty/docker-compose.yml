@@ -1,0 +1,8 @@
+version: "2"
+services:
+  redis:
+    build: .
+    volumes:
+      - /development/redis-deb/trusty/out:/out
+      
+    
