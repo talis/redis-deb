@@ -3,3 +3,6 @@
 id -u redis &>/dev/null || useradd redis -s /bin/bash -p '*'
 mkdir -p /var/redis/db
 chown -R redis:redis /var/redis
+mkdir -p /var/log/redis
+touch /var/log/redis/redis.log
+chown -R redis:redis /var/log/redis
