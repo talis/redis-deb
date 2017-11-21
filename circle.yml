@@ -24,7 +24,7 @@ stages:
           docker-compose run test
       - type: shell
         name: Upload tools package
-        command: aws s3 cp ~/redis-deb/trusty/out/redis-tools_3.2.4-trusty-talis_amd64.deb s3://aspire-operations/binaries/aptly/redis-tools_3.2.4-trusty-talis_amd64.deb
+        command: aws s3 cp ~/redis-deb/trusty/out/redis-tools_3.2.4-trusty-talis_amd64.deb $REPO/redis-tools_3.2.4-trusty-talis_amd64.deb
       - type: shell
         name: Upload server package
-        command: aws s3 cp ~/redis-deb/trusty/out/redis-server_3.2.4-trusty-talis_amd64.deb s3://aspire-operations/binaries/aptly/redis-server_3.2.4-trusty-talis_amd64.deb
+        command: aws s3 cp ~/redis-deb/trusty/out/redis-server_3.2.4-trusty-talis_amd64.deb $REPO/redis-server_3.2.4-trusty-talis_amd64.deb
