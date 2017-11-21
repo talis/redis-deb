@@ -1,0 +1,30 @@
+version: 2
+executorType: machine
+stages:
+  build:
+    workDir: ~/redis-deb
+    steps:
+      - type: shell
+        name: Prep /development
+        command: |
+          sudo mkdir /development
+          sudo chmod 777 /development
+          ln -s /home/circleci/redis-deb /development/redis-deb
+      - type: checkout
+      - type: shell
+        name: Build image
+        command: |
+          cd trusty
+          docker-compose build
+          docker-compose run redis
+      - type: shell
+        name: Run tests
+        command: |
+          cd trusty
+          docker-compose run test
+      - type: shell
+        name: Upload tools package
+        command: aws s3 cp ~/redis-deb/trusty/out/redis-tools_3.2.4-trusty-talis_amd64.deb $REPO/redis-tools_3.2.4-trusty-talis_amd64.deb
+      - type: shell
+        name: Upload server package
+        command: aws s3 cp ~/redis-deb/trusty/out/redis-server_3.2.4-trusty-talis_amd64.deb $REPO/redis-server_3.2.4-trusty-talis_amd64.deb
